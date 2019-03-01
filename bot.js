@@ -3202,5 +3202,267 @@ client.on('message',async message => {
   }
   });
 
+client.on('message', message => {       ///Toxic Codes
+    if (message.content === "$id") {    ///Toxic Codes
+    var year = message.createdAt.getFullYear()
+    var month = message.createdAt.getMonth()
+    var day = message.createdAt.getDate()
+         let embed = new Discord.RichEmbed()
+         .setAuthor(message.author.username, message.author.avatarURL)
+      .setThumbnail(message.author.avatarURL)
+        .addField("**اسمك:**",  '**[ ' + `${message.author.username}` + ' ]**')
+          .setThumbnail(message.author.avatarURL)
+                   .setFooter(`${message.author.username}`, 'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')
+      .addField('الكود الخاص بك:', message.author.discriminator)
+      .addField("**عدد الايام منذ افتتاح حسابك:**", message.author.createdAt.getDate())
+        .addField("** تم افتتاح حسابك عام:**", message.createdAt.getFullYear())
+            .addField("** عدد الشهور منذ افتتاح حسابك:**", message.createdAt.getMonth())
+    
+      message.channel.send({embed});
+        }
+    }); ///Toxic Codes
+
+client.on('message', message => {
+	var command = message.content.toLowerCase().split(" ")[0];
+    if(command == prefix + 'sug') {
+		if(message.author.bot) return;
+		if(message.channel.type === 'dm') return;
+		var member = message.author.id;
+		var channel = message.guild.channels.find('name', 'الاقتراحات');
+		if(!channel) return;
+		var sug = message.content.split(' ').slice(1).join(' ');
+        if(!sug) return message.channel.send(`**➥ Useage:** ${prefix}suggest <اقتراحك>`).then(msg => msg.delete(5000));
+		message.delete();
+		
+		var sugDone = new Discord.RichEmbed()
+		.setTitle(`**تم ارسال اقتراحك بنجاح ! شكرا على اقتراحك**`)
+		.setColor('GRAY')
+		.setThumbnail(client.user.avatarURL)
+		.setDescription(`**\n➥ اقتراحك هو**\n\n${sug}`)
+		.setTimestamp()
+		.setFooter(message.author.tag, message.author.avatarURL)
+		
+		var sugSure = new Discord.RichEmbed()
+		.setThumbnail(client.user.avatarURL)
+		.setTitle(`**هل انت متأكد من انك تريد ارسال اقتراحك ؟ معك دقيقة قبل الالغاء**`)
+		.setDescription(`**\n➥ اقتراحك هو**\n\n${sug}\n\n:white_check_mark: للارسال\n\n:negative_squared_cross_mark: للالغاء`)
+		.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+		.setTimestamp()
+		.setColor('GRAY')
+		message.channel.send(sugSure).then(msg => {
+			msg.react('✅').then(() => msg.react('❎'))
+
+let YesFilter = (reaction, user) => reaction.emoji.name === '✅'  && user.id === message.author.id;
+let NoFilter = (reaction, user) => reaction.emoji.name === '❎' && user.id === message.author.id;
+
+let Yes = msg.createReactionCollector(YesFilter, { time: 60000 });
+let No = msg.createReactionCollector(NoFilter, { time: 60000 });
+
+Yes.on("collect", r => {
+	message.channel.send(sugDone).then(msg => msg.delete(6000));
+	msg.delete();
+	var newsug = new Discord.RichEmbed()
+	.setTitle(`**:bell: اقــــــتـــراح جـــــديــــــد :bell:**`)
+	.setDescription(`**➥ من**\n<@${member}>\n\n**➥ الاقتراح هو**\n\n${sug}`)
+	.setFooter(`${message.author.username}#${message.author.discriminator}`, message.author.avatarURL)
+	.setTimestamp()
+	.setThumbnail(client.user.avatarURL)
+	.setColor('GRAY')
+	channel.send(newsug).then(message => {
+		message.react('👍').then(() => message.react('👎'))
+	})
+})
+No.on("collect", r => {
+	message.reply('**:x: تم الغاء اقتراحك**').then(message => {message.delete(4000)})
+	msg.delete();
+})
+   })
+	}
+});
+
+client.on('message', message => {
+    if (message.content.startsWith("$رابط")) {
+        message.channel.createInvite({
+        thing: true,
+        maxUses: 5,
+        maxAge: 3600,
+    }).then(invite =>
+      message.author.sendMessage(invite.url)
+    )
+    const embed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+          .setDescription("تم أرسال الرابط برسالة خاصة")
+           .setAuthor(client.user.username, client.user.avatarURL)
+                 .setAuthor(client.user.username, client.user.avatarURL)
+                .setFooter('طلب بواسطة: ' + message.author.tag)
+
+      message.channel.sendEmbed(embed).then(message => {message.delete(10000)})
+              const Embed11 = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        
+    .setDescription("** مدة الرابط : ساعه | عدد استخدامات الرابط : 5 **")
+      message.author.sendEmbed(Embed11)
+    }
+});
+
+client.on('typingStart', (ch, user) => {
+    if(user.presence.status === 'offline') {
+        
+        ch.send(`${user} هاهاهاا , كشفتك وانت تكتب ي اوف لاين`)
+        .then(msg => {
+            msg.delete(10000)
+        })
+    }
+});
+
+client.on('message', msg => {
+    if(msg.content === '$help')
+    msg.reply('تم الارسال في الخاص :white_check_mark:')
+  });
+
+const rWlc = {}
+client.on('message', message => {//Toixc Codes
+var prefix = "$";//البرفكس //Toixc Codes
+if(message.channel.type === "dm") return;
+if(message.author.bot) return;
+   if(!rWlc[message.guild.id]) rWlc[message.guild.id] = {//Toixc Codes
+    role: "member"//Toixc Codes
+  }//Toixc Codes
+const channel = rWlc[message.guild.id].role
+  if (message.content.startsWith(prefix + "autorole")) {//Toixc Codes
+    if(!message.member.hasPermission(`MANAGE_GUILD`)) return;
+    let newrole = message.content.split(' ').slice(1).join(" ")//Toixc Codes
+    if(!newrole) return message.reply(`**${prefix}autorole <rule name>**`)//Toixc Codes
+    rWlc[message.guild.id].role = newrole
+    message.channel.send(`**${message.guild.name}'s تم تغير الرتبة وجعلها ${newrole}**`);//Toixc Codes
+  }
+
+
+client.on("guildMemberAdd", member => {
+      if(!rWlc[member.guild.id]) rWlc[member.guild.id] = {
+    role: "member"
+  }
+  const Role = rWlc[member.guild.id].role
+    const sRole = rWlc[member.guild.id].role
+    let Rrole = member.guild.roles.find('name', sRole);//Toixc Codes
+  member.addRole(Rrole);//Toixc Codes
+ 
+      
+      
+      });//Toixc Codes
+});//Toixc Codes
+
+client.on('message',async message => {
+  if(message.author.bot) return;
+  if(message.channel.type === 'dm') return;
+ 
+  const args = message.content.split(' ');
+  const credits = require('./credits.json');
+  const path = './credits.json';
+  const mention = message.mentions.users.first() || client.users.get(args[1]) || message.author;
+  const mentionn = message.mentions.users.first() || client.users.get(args[1]);
+  const author = message.author.id;
+  const balance = args[2];
+  const daily = Math.floor(Math.random() * 350) + 10;
+ 
+  if(!credits[author]) credits[author] = {credits: 50};
+  if(!credits[mention.id]) credits[mention.id] = {credits: 50};
+  fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
+ 
+ 
+  if(message.content.startsWith(prefix + "credit")) {
+  if(args[0] !== `${prefix}credit` && args[0] !== `${prefix} \`\`${`$credit`}\`\`.**`) return;
+ 
+  if(args[2]) {
+    if(isNaN(args[2])) return message.channel.send('**:heavy_multiplication_x:| هذه الخانة يجب ان تتكون من ارقام وليس احرف.**');
+    if(mention.bot) return message.channel.send(`**:heavy_multiplication_x:| ${message.content.split(' ')[1]} لم يتم العثور على**`);
+    if(mention.id === message.author.id) return message.channel.send('**:heavy_multiplication_x:| لا يمكنك تحويل كردت لنفسك**');
+    if(credits[author].credits < balance) return message.channel.send('**:heavy_multiplication_x:| أنت لا تملك هذا القدر من الكردت**');
+    var one = Math.floor(Math.random() * 9) + 1;
+    var two = Math.floor(Math.random() * 9) + 1;
+    var three = Math.floor(Math.random() * 9) + 1;
+    var four = Math.floor(Math.random() * 9) + 1;
+ 
+    var number = `${one}${two}${three}${four}`;
+   
+    message.channel.send(`**:heavy_dollar_sign:| \`${number}\`, أكتب الرقم للأستمرار**`).then(m => {
+      message.channel.awaitMessages(m => m.author.id === message.author.id, {max: 1, time: 10000}).then(c => {
+        if(c.first().content === number) {
+          m.delete();
+          message.channel.send(`**:atm:| ${message.author.username}, قام بتحويل \`${balance}\` لـ ${mention}**`);
+          credits[author].credits += (-balance);
+          credits[mention.id].credits += (+balance);
+          fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
+        } else if(c.first().content !== number) {
+          m.delete();
+          message.channel.send(`** :money_with_wings: | تم الغاء الإرسال**`);
+        }
+      });
+    });
+  }
+  if(!args[2]) {
+    if(mention.bot) return message.channel.send(`**:heavy_multiplication_x:| ${message.content.split(' ')[1]} لم يتم العثور على**`);
+    message.channel.send(`**${mention.username}, your :credit_card: balance is **${credits[mention.id].credits}`);
+  }
+ 
+  }
+  if(message.content.startsWith(prefix + "daily")) {
+    if(cool.includes(message.author.id)) return message.channel.send(`**:heavy_dollar_sign: | \ , يجب عليك انتظار  يوم لأخذ المبلغ مرة اخرى**`);
+    if(mentionn) {
+      var one = Math.floor(Math.random() * 9) + 1;
+      var two = Math.floor(Math.random() * 9) + 1;
+      var three = Math.floor(Math.random() * 9) + 1;
+      var four = Math.floor(Math.random() * 9) + 1;
+ 
+      var number = `${one}${two}${three}${four}`;
+ 
+      message.channel.send(`**:atm: | \`${number}\`, قم بكتابة الرقم للأستمرار**`).then(async m => {
+        message.channel.awaitMessages(msg => msg.author.id === message.author.id, {max: 1, time: 20000, errors: ['time']}).then(collected => {
+          if(collected.first().content === number) {
+            m.delete();
+            collected.first().delete();
+            credits[mentionn.id].credits += (+daily);
+            fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
+ 
+          message.channel.send(`**:atm: | \`${daily}\`, تم تسليم المبلغ**`);  
+          }
+          if(collected.first().content !== number) {
+            return m.delete();
+          }
+        });
+      });
+    } else if(!mentionn) {
+      credits[author].credits += (+daily);
+      fs.writeFile(path, JSON.stringify(credits, null, 5), function(err) {if(err) console.log(err)});
+ 
+      message.channel.send(`**:atm: | \`${daily}\`, تم اعطائك المبلغ**`);
+    }
+    cool.unshift(message.author.id);
+ 
+    setTimeout(() => {
+      cool.shift(message.author.id);
+      message.author.send("**:atm: | \`Daily\`, يمكنك الحصول على الكردت المجانية الان**").catch();
+    }, ms("1d"));
+  }
+});
+
+client.on('message', message => {
+    if (message.content.startsWith(prefix + "avatar")) {
+        var mentionned = message.mentions.users.first();
+    var x5bzm;
+      if(mentionned){
+          var x5bzm = mentionned;
+      } else {
+          var x5bzm = message.author;
+          
+      }
+        const embed = new Discord.RichEmbed()
+        .setColor("RANDOM")
+        .setImage(`${x5bzm.avatarURL}`)
+      message.channel.sendEmbed(embed);
+    }
+});
+
+client.login(process.env.BOT_TOKEN)
 
                                                                                                                                                                                                                                                                                                                                                                                                                     
