@@ -27,8 +27,8 @@ const youtube = new YouTube("AIzaSyAdORXg7UZUo7sePv97JyoDqtQVi3Ll0b8");
 const sql = require("sqlite");
 const dateFormat = require('dateformat'); 
 const pretty = require('pretty-ms') 
-const prefix = '-';
-const adminprefix = '-';
+const prefix = '$';
+const adminprefix = '$';
 var table = require('table').table
 var ti={}  
 ,spee={}
@@ -256,7 +256,7 @@ message.channel.sendEmbed(embed)
 });
 
  client.on('message', message => {
-    if (message.content === ('-bot')) {
+    if (message.content === ('$bot')) {
     message.channel.send({
         embed: new Discord.RichEmbed()
             .setAuthor(client.user.username,client.user.avatarURL)
@@ -267,7 +267,7 @@ message.channel.sendEmbed(embed)
             .addField('**Channels**📝 :' , `[ ${client.channels.size} ]` , true)
             .addField('**Users**🔮 :' ,`[ ${client.users.size} ]` , true)
             .addField('**Bot Name**🔰 :' , `[ ${client.user.tag} ]` , true)
-            .addField('**Bot Owner**👑 :' , `[@**Zinx I Friendly**#7450 ]` , true)
+            .addField('**Bot Owner**👑 :' , `[@１ｘＦａｈａＤ_💔abke#2640  ]` , true)
             .setFooter(message.author.username, message.author.avatarURL)
     })
 }
@@ -275,7 +275,7 @@ message.channel.sendEmbed(embed)
 
  client.on('message', message => {
               if (!message.channel.guild) return;
-      if(message.content =='-count')
+      if(message.content =='$count')
 	 
       message.reply(`**${message.guild.memberCount}**`);
     });
@@ -342,7 +342,7 @@ client.on('message', msg => {
 };
 });
 client.on('message', message => {
-    if (message.content.startsWith("-trans")) {
+    if (message.content.startsWith("$trans")) {
       
     let toTrans = message.content.split(' ').slice(1);
     let language;
@@ -367,7 +367,7 @@ client.on('message', message => {
                 timestamp: new Date(),
                 footer: {
                   icon_url: client.user.avatarURL,
-                  text: "Galaxy"
+                  text: "ArenaMez Community"
                 }
             }}
             )
@@ -448,7 +448,7 @@ if (command == "z5rf") {
 });
 
 client.on('message', message => {
-    if (message.content === "-rooms") {
+    if (message.content === "$rooms") {
         if (message.author.bot) return
                       if (!message.guild) return;
 
@@ -566,27 +566,12 @@ client.on("message", message => {
 
 
 client.on('message', message => {
-    if (message.content.startsWith("-bans")) {
+    if (message.content.startsWith("$bans")) {
         message.guild.fetchBans()
         .then(bans => message.channel.send(`Number of banned persons **${bans.size}** `))
 }
 });
-client.on('message', message => {
-    if (message.content.startsWith("-avatar")) {
-if(!message.channel.guild) return;
-        var mentionned = message.mentions.users.first();
-    var client;
-      if(mentionned){
-          var client = mentionned; } else {
-          var client = message.author;
-      }
-        const embed = new Discord.RichEmbed()
-                           .addField('Requested by:', "<@" + message.author.id + ">")
-        .setColor(000000)
-        .setImage(`${client.avatarURL}`)
-      message.channel.sendEmbed(embed);
-    }
-});
+
 const mapping = {
   ' ': '   ',
   '0': ':zero:',
@@ -689,7 +674,7 @@ message.react("❌")
  }}});
  client.on('message', message => {
   if(!message.channel.guild) return;
-if(message.content.startsWith('-bc')) {
+if(message.content.startsWith('$bc')) {
 if(!message.channel.guild) return message.channel.send('**هذا الأمر فقط للسيرفرات**').then(m => m.delete(5000));
 if(!message.member.hasPermission('ADMINISTRATOR')) return      message.channel.send('**للأسف لا تمتلك صلاحية** `ADMINISTRATOR`' );
 let args = message.content.split(" ").join(" ").slice(2 + prefix.length);
@@ -1307,15 +1292,15 @@ msg.channel.send(embed).then(() => {
         .then((collected) => {
          const sh = new Discord.RichEmbed()
 .setColor("04791c")
-.setDescription('**✅ |Good Job +1P**')
-.addField('Type G.mypoints', 'To Show ur Points' , true)
+.setDescription('**✅ | +1P**')
+.addField('اكتب $mypoints', 'لتري نقاطك' , true)
 .setFooter(message.author.username, message.author.avatarURL)
 message.channel.sendEmbed(sh);
         let won = collected.first().author;
                 points[won.id].points++;
         })
            .catch(collected => { // في حال لم يقم أحد بالإجابة
-            message.channel.send(`🔚 |**Time Is End**`);
+            message.channel.send(`🔚 |**انتهي الوقت**`);
            })
           fs.writeFile("./points.json", JSON.stringify(points), (err) => {
     if (err) console.error(err)
@@ -1371,7 +1356,7 @@ client.on('message', message => {
     if (!points[message.author.id]) points[message.author.id] = { 
         points: 0,
       };
-    if (message.content == "-ايموجى") { 
+    if (message.content == "$ايموجى") { 
         if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
     
     const type = require('./emojis.json'); 
@@ -1387,8 +1372,8 @@ m.edit({embed: new Discord.RichEmbed().setTitle('لديك 15 ثانيه للاج
             .then((collected) => {
             const sh = new Discord.RichEmbed()
 .setColor("04791c")
-.setDescription('**✅ |Good Job +1P**')
-.addField('Type G.mypoints', 'To Show ur Points' , true)
+.setDescription('**✅ | +1P**')
+.addField('$mypoints', 'لتري نقاطك', true)
 .setFooter(message.author.username, message.author.avatarURL)
 message.channel.sendEmbed(sh);
             console.log(`[Game] ${collected.first().author} Answered with the correct answer`);
@@ -1743,7 +1728,7 @@ if (!points[message.author.id]) points[message.author.id] = {
     points: 0,
   };
   if(!message.guild) return;
-    let id = message.author.id,prefix="-";
+    let id = message.author.id,prefix="$";
     if (spee[id] && (new Date).getTime() - spee[id] < 15*1000) {
         let r = (new Date).getTime() - spee[id];
         r = 15*1000 - r;
@@ -1778,7 +1763,7 @@ msg.channel.send(embed).then(() => {
                   const sh = new Discord.RichEmbed()
   .setColor("04791c")
 .setDescription('**✅ | +1P**')
-.addField('اكتب -mypoints لتري نقاطك' , true)
+.addField('اكتب $mypoints لتري نقاطك' , true)
 .setFooter(message.author.username, message.author.avatarURL)
 message.channel.sendEmbed(sh);
             let won = collected.first().author; // في هذا السطر يقوم الكود بسحب الأي دي الذي قام بالأجابة اولاً
@@ -1934,7 +1919,7 @@ if (!points[message.author.id]) points[message.author.id] = {
     points: 0,
   };
   if(!message.guild) return;
-    let id = message.author.id,prefix="-";
+    let id = message.author.id,prefix="$";
     if (spee[id] && (new Date).getTime() - spee[id] < 15*1000) {
         let r = (new Date).getTime() - spee[id];
         r = 15*1000 - r;
@@ -1969,7 +1954,7 @@ msg.channel.send(embed).then(() => {
                   const sh = new Discord.RichEmbed()
 .setColor("04791c")
 .setDescription('**✅ | +1P**')
-.addField('اكتب -mypoints لتري نقاطك' , true)
+.addField('اكتب $mypoints لتري نقاطك' , true)
 .setFooter(message.author.username, message.author.avatarURL)
 message.channel.sendEmbed(sh);
             let won = collected.first().author; // في هذا السطر يقوم الكود بسحب الأي دي الذي قام بالأجابة اولاً
@@ -2111,7 +2096,7 @@ if (!points[message.author.id]) points[message.author.id] = {
     points: 0,
   };
   if(!message.guild) return;
-    let id = message.author.id,prefix= "-";
+    let id = message.author.id,prefix= "$";
     if (spee[id] && (new Date).getTime() - spee[id] < 15*1000) {
         let r = (new Date).getTime() - spee[id];
         r = 15*1000 - r;
@@ -2146,7 +2131,7 @@ msg.channel.send(embed).then(() => {
                   const sh = new Discord.RichEmbed()
 .setColor("04791c")
 .setDescription('**✅ | +1P**')
-.setFooter('G.mypoints')
+.setFooter('$mypoints')
 message.channel.sendEmbed(sh);
             let won = collected.first().author; // في هذا السطر يقوم الكود بسحب الأي دي الذي قام بالأجابة اولاً
             points[won.id].points++;
@@ -2169,7 +2154,7 @@ const cuttweet = [     'كت تويت ‏| تخيّل لو أنك سترسم ش�
   var embed = new Discord.RichEmbed()
   .setColor('RANDOM')
    .setThumbnail(message.author.avatarURL) 
- .addField('Galaxy bot' ,
+ .addField('ArenaMez Community' ,
   `${cuttweet[Math.floor(Math.random() * cuttweet.length)]}`)
   message.channel.sendEmbed(embed);
   console.log('[id] Send By: ' + message.author.username)
@@ -2251,7 +2236,7 @@ var al7arthyCodes2 = ["📙__60%__  **|**  📘__40%__","📙__63%__  **|**  �
 client.on('message', message => {
     if(!message.guild) return;
     if (message.author.bot) return;
-      let id = message.author.id,prefix="-";//البريفكس
+      let id = message.author.id,prefix="$";//البريفكس
       if (ti[id] && (new Date).getTime() - ti[id] < 20*1000) {
           let r = (new Date).getTime() - ti[id];
           r = 20*1000 - r;
@@ -2343,7 +2328,7 @@ const zead = [
    '*** انتظر الجزء الثاني عندما يوصل البوت 100 سيرفر , ساعدني في نشر البوت وادخل هذا السيرفر  ***'
 ];
  client.on('message', message => {
- if (message.content.startsWith('-مريم')) {
+ if (message.content.startsWith('$مريم')) {
   var mariam= new Discord.RichEmbed()
   .setTitle("لعبة مريم ..")
   .setColor('RANDOM')
@@ -2419,7 +2404,7 @@ var Za7f = [
 ];
 
 client.on('message', message => {
- if (message.content.startsWith("-عقاب")) {
+ if (message.content.startsWith("$عقاب")) {
               if(!message.channel.guild) return message.reply('** This command only for servers**');
 var embed = new Discord.RichEmbed()
 .setColor('RANDOM')
@@ -2586,7 +2571,7 @@ client.on('message', message => {
   if (!message.content.startsWith(prefix)) return;
   var args = message.content.split(' ').slice(1);
   var argresult = args.join(' ');
-  if (message.author.id == 545245659834351634) return;
+  if (message.author.id == 538063663698018325) return;
 
 
 if (message.content.startsWith(prefix + 'playing')) {
@@ -2594,7 +2579,7 @@ client.user.setGame(argresult);
     message.channel.sendMessage(`**${argresult}** : تم تغيير الحالة`)
 } else
 
-if (message.content.startsWith(prefix + 'streem')) {
+if (message.content.startsWith(prefix + 'streaming')) {
 client.user.setGame(argresult, "http://twitch.tv/y04zgamer");
     message.channel.sendMessage(`**${argresult}** :تم تغيير الحالة الى ستريمنج`)
 } else
@@ -2663,7 +2648,7 @@ client.on('message',   eyad =>{
     var  args = eyad.content.split(" ").slice(2).join(" ")
     var men = eyad.mentions.users.first()|| client.users.get(eyad.content.split(' ')[1])
     var  mas = eyad.author
-                              if(eyad.content == '-sar7') {
+                              if(eyad.content == '$sar7') {
                               if(eyad.channel.type === "dm"){
 if(!args) return  eyad.channel.send(":black_medium_square: **قم بوضع رسالة الصراحة **");
 if(!men) return  eyad.channel.send(":black_medium_square:**قم بوضع ايدي المراد مصارحتة , ربما يكون الشخص غير موجود في سيرفرات مشتركة بينك وبينة لذلك لن يستطيع البوت الأرسال** ");
@@ -3181,7 +3166,7 @@ return channel.send("**`افضل موقع بيديك حسابات مجانا ل�
     )});
 
 client.on('message',async message => {
-  if(message.content === '-unbanall') {
+  if(message.content === '$unbanall') {
     var user = message.mentions.users.first();
     if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('❌|**`ADMINISTRATOR`لا توجد لديك صلاحية `**');
     if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
@@ -3203,7 +3188,7 @@ client.on('message',async message => {
   });
 
 client.on("message", message => {
-    var prefix = "-";
+    var prefix = "$";
     const command = message.content.split(" ")[0];
 
     if(command == prefix+"kv"){
@@ -3248,7 +3233,7 @@ if(message.content === adminprefix + "restart") {
 
 const rWlc = {}
 client.on('message', message => {//Toixc Codes
-var prefix = "-";//البرفكس //Toixc Codes
+var prefix = "$";//البرفكس //Toixc Codes
 if(message.channel.type === "dm") return;
 if(message.author.bot) return;
    if(!rWlc[message.guild.id]) rWlc[message.guild.id] = {//Toixc Codes
@@ -3279,7 +3264,7 @@ client.on("guildMemberAdd", member => {
 });//Toixc Codes
 
 client.on('message', msg => {
-    if(msg.content === '-help')
+    if(msg.content === '$help')
     msg.reply('تم الارسال في الخاص :white_check_mark:')
   });
 const ms = require('ms'); // npm i ms
@@ -3397,7 +3382,7 @@ client.on('message', message => {
 });
 
 client.on('message', message => {
-    if (message.content.startsWith("-رابط")) {
+    if (message.content.startsWith("$رابط")) {
         message.channel.createInvite({
         thing: true,
         maxUses: 5,
@@ -4232,7 +4217,7 @@ ch.setUserLimit(15)
 });//Baron#1500
 
 client.on('message', message => {    ///Toxic Codes
-            if (message.content.startsWith("-rules")) {
+            if (message.content.startsWith("$rules")) {
      let embed = new Discord.RichEmbed()
 .setThumbnail(message.author.avatarURL)
 .addField('     اولا ' ,' ممنوع السب ')
@@ -4251,7 +4236,7 @@ client.on('message', message => {    ///Toxic Codes
 
 client.on('message', message => { ///Toxic Codes
     if (message.author.bot) return;
-    if (message.content.indexOf('-un') === 0) {
+    if (message.content.indexOf('$un') === 0) {
         var text = message.content.substring(1);
         
         var reversed = '';
@@ -4266,7 +4251,7 @@ client.on('message', message => { ///Toxic Codes
 });
 
 client.on('message', message => {       ///Toxic Codes
-    if (message.content === "-id") {    ///Toxic Codes
+    if (message.content === "$id") {    ///Toxic Codes
     var year = message.createdAt.getFullYear()
     var month = message.createdAt.getMonth()
     var day = message.createdAt.getDate()
