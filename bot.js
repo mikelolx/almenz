@@ -3181,7 +3181,7 @@ return channel.send("**`افضل موقع بيديك حسابات مجانا ل�
     )});
 
 client.on('message',async message => {
-  if(message.content === '-unbanall') {
+  if(message.content === '$unbanall') {
     var user = message.mentions.users.first();
     if(!message.member.hasPermission('ADMINISTRATOR')) return message.channel.send('❌|**`ADMINISTRATOR`لا توجد لديك صلاحية `**');
     if(!message.guild.member(client.user).hasPermission("BAN_MEMBERS")) return message.reply("**I Don't Have ` BAN_MEMBERS ` Permission**");
@@ -3202,20 +3202,5 @@ client.on('message',async message => {
   }
   });
 
-client.on("message", message => {
-    var prefix = "$";
-    const command = message.content.split(" ")[0];
-
-    if(command == prefix+"kv"){
-
-        if (!message.guild.member(message.author).hasPermission('MOVE_MEMBERS') || !message.guild.member(message.author).hasPermission('ADMINISTRATOR')) {
-            return message.reply('ليس لديك برمشن كافي !');
-        }
-
-        var member = message.guild.members.get(message.mentions.users.array()[0].id);
-        if(!message.mentions.users){
-            message.reply("منشن لاعب")
-            return;
-        }
 
                                                                                                                                                                                                                                                                                                                                                                                                                     
